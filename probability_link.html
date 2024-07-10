@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>ランダムアンケート</title>
+    <script>
+        // 各URLとその割合を定義
+        const urls = [
+            { url: 'https://docs.google.com/forms/d/1DtbkhtyNkX-mXIM-9ST0YhyVFMQGKGz1_3qEC7Nyyf0/edit', probability: 25 },  // 25%の確率
+            { url: 'https://docs.google.com/forms/d/19hezpPTsZx-3VDHHO2PZCD4RrKJtg_CO0vPgQsC3O9o/edit', probability: 25 },  // 25%の確率
+            { url: 'https://docs.google.com/forms/d/1APRvFG-yIoT6Y9tHmWvIk8QVgKlFGc6YYesCCslacv8/edit', probability: 25 },  // 25%の確率
+            { url: 'https://docs.google.com/forms/d/1q3mBUampdWMfwxETX4DN3309ogRXuNIveUSCF_uZeLQ/edit', probability: 25 }   // 25%の確率
+        ];
+
+        // ランダムに選ばれた確率の位置を決定する
+        let randomNumber = Math.random() * 100; // 0から100のランダムな数を生成
+
+        // 選択されるURLを決定する
+        let selectedUrl;
+        let cumulativeProbability = 0;
+
+        for (const entry of urls) {
+            cumulativeProbability += entry.probability;
+            if (randomNumber <= cumulativeProbability) {
+                selectedUrl = entry.url;
+                break;
+            }
+        }
+
+        // リダイレクトする
+        if (selectedUrl) {
+            window.location.href = selectedUrl;
+        } else {
+            console.error('URLの選択に失敗しました。');
+        }
+    </script>
+</head>
+<body>
+    <p>リダイレクト中...</p>
+</body>
+</html>
